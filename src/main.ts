@@ -1,12 +1,18 @@
 require('dotenv').config();
-const { Client, Intents } = require('discord.js'); //discord.js からClientとIntentsを読み込む
+import { Client, Intents, Interaction } from 'discord.js';
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] }); //clientインスタンスを作成する
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-client.once('ready', () => { //ここにボットが起動した際のコードを書く(一度のみ実行)
-	console.log('起動完了'); //黒い画面(コンソール)に「起動完了」と表示させる
+client.once('ready', () => {
+    console.log('起動完了');
 });
 
-client.login(process.env.AUTH_TOKEN); //ログインする
+client.on('messageCreate', (msg) => {
+    if (msg.content === 'ping') {
+        msg.channel.send('pong')
+    }
+})
+
+client.login(process.env.AUTH_TOKEN);
 
 
