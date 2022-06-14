@@ -1,22 +1,21 @@
-# test
+# tenkibot
 
-PythonかTSか？ -- TypeScriptで決定！！
+## 仕様
 
-python
-機械学習とかで使われる
-ちょっと終わり感ある
-簡単
+- 毎日午後5時になったら起動
+- 次の日が雨ならあるチャンネルに「明日は雨です」と投稿してくれる
 
-TypeScript
-Webで使われる
-今アツい、インターンとかにもいける
-難しい
-JavaScriptの進化版
+## メモ
 
-環境構築
-volta - https://docs.volta.sh/guide/getting-started
+要素
+- 定時実行するのはどこで？ -> サーバは？ Glitch
+- どこを見て雨判定を決める？ -> 降水確率と、場所の2つの視点
+- チャンネル指定 -> 環境変数で指定できるようにする
 
-使うライブラリ
-
-
-https://zenn.dev/alliana_ab2m/articles/how-to-write-discord-bot-in-typescript
+```ts
+const channel = process.env.CHANNEL
+client.once('ready', () => {
+  (channel).send('明日の天気は〜！')
+  exit()
+})
+```
