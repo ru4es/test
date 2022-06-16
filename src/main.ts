@@ -16,7 +16,7 @@ client.once('ready', async () => {
     const weathercode = data.daily.weathercode[1]
     const rainJudge = [61, 63, 65, 66, 67, 80, 81, 82]
     if (rainJudge.includes(weathercode)) {
-        await (client!.channels!.cache!.get(process.env.CHANNEL_ID!)! as TextChannel).send('明日の天気は')
+        await (client!.channels!.cache!.get(process.env.CHANNEL_ID!)! as TextChannel).send('明日は雨です')
     }
     process.exit()
 });
